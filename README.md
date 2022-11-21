@@ -36,7 +36,7 @@
 
 ## :man_technologist: Jenkins job
 
-<a target="_blank" href="https://jenkins.autotests.cloud/job/DenisZhICT_%20UIPartOfQAProject_qa.guru14/">Сборка в Jenkins</a>
+<a target="_blank" href="https://jenkins.autotests.cloud/job/DenisZhICT_%20APIPartOfQAProject_qa.guru14/">Сборка в Jenkins</a>
 <p align="center">
 <img src="images/screen/jenkins_job.png" alt="Jenkins"/>
 </p>
@@ -58,7 +58,7 @@ clean
 ${TEST_TYPE}
 ```
 
-## :chart_with_upwards_trend: Отчет в <a target="_blank" href="https://jenkins.autotests.cloud/job/DenisZhICT_%20UIPartOfQAProject_qa.guru14/9/allure/">Allure report</a>
+## :chart_with_upwards_trend: Отчет в <a target="_blank" href="https://jenkins.autotests.cloud/job/DenisZhICT_%20APIPartOfQAProject_qa.guru14/2/allure/#">Allure report</a>
 
 ### Основное окно
 
@@ -66,7 +66,7 @@ ${TEST_TYPE}
 <img title="Allure Overview Dashboard" src="images/screen/allure_main.png">
 </p>
 
-## :bar_chart: Отчет в <a target="_blank" href="https://allure.autotests.cloud/launch/16977/tree?treeId=0">Allure TestOps</a>
+## :bar_chart: Отчет в <a target="_blank" href="https://allure.autotests.cloud/launch/17012/tree?treeId=0">Allure TestOps</a>
 
 ### Test Result Tree
 
