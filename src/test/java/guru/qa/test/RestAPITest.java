@@ -23,6 +23,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 
 @Tag("All")
+@DisplayName("API тесты для Reqres")
 public class RestAPITest {
 
     Data data = ConfigFactory.create(Data.class, System.getProperties());
