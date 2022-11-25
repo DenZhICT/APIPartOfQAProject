@@ -1,8 +1,8 @@
 package guru.qa.test;
 
 import guru.qa.data.Data;
-import guru.qa.modals.newUser.NewUserBody;
-import guru.qa.modals.newUser.NewUserResponse;
+import guru.qa.modals.newuser.NewUserBody;
+import guru.qa.modals.newuser.NewUserResponse;
 import guru.qa.modals.register.RegisterBody;
 import guru.qa.modals.register.RegisterResponse;
 import org.aeonbits.owner.ConfigFactory;
