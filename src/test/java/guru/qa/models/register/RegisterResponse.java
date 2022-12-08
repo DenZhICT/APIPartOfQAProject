@@ -1,4 +1,4 @@
-package guru.qa.modals.register;
+package guru.qa.models.register;
 
 import lombok.Data;
 

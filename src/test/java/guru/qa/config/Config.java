@@ -1,9 +1,7 @@
-package guru.qa.data;
+package guru.qa.config;
 
-import org.aeonbits.owner.Config;
-
-@Config.Sources("classpath:properties/data.properties")
-public interface Data extends Config {
+@org.aeonbits.owner.Config.Sources("classpath:properties/config.properties")
+public interface Config extends org.aeonbits.owner.Config {
 
     @Key("id")
     int getId();

@@ -1,4 +1,4 @@
-package guru.qa.modals.newuser;
+package guru.qa.models.newuser;
 
 import lombok.Data;
 

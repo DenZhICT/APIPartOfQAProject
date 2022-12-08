@@ -1,18 +1,15 @@
 package guru.qa.test;
 
-import guru.qa.data.Data;
-import guru.qa.modals.newuser.NewUserBody;
-import guru.qa.modals.newuser.NewUserResponse;
-import guru.qa.modals.register.RegisterBody;
-import guru.qa.modals.register.RegisterResponse;
+import guru.qa.config.Config;
+import guru.qa.models.newuser.NewUserBody;
+import guru.qa.models.newuser.NewUserResponse;
+import guru.qa.models.register.RegisterBody;
+import guru.qa.models.register.RegisterResponse;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.atomic.AtomicReference;
-
-import static guru.qa.specs.RequestSpecs.allureAndUri;
 import static guru.qa.specs.RequestSpecs.allureAndUriWithJson;
 import static guru.qa.specs.ResponseSpecs.*;
 import static io.qameta.allure.Allure.step;
@@ -26,7 +23,7 @@ import static org.hamcrest.Matchers.is;
 @DisplayName("API тесты для Reqres")
 public class RestAPITest {
 
-    Data data = ConfigFactory.create(Data.class, System.getProperties());
+    Config config = ConfigFactory.create(Config.class, System.getProperties());
 
     @Tag("Id")
     @DisplayName("Проверка фамилии пользователя по id")
@@ -34,12 +31,12 @@ public class RestAPITest {
     void successGetUser() {
         step("Проверка фамилии пользователя по id", () ->
                 given()
-                        .spec(allureAndUri)
+                        .spec(allureAndUriWithJson)
                         .when()
-                        .get("users/" + data.getId())
+                        .get("users/" + config.getId())
                         .then()
                         .spec(getLogs200)
-                        .body("data.last_name", is(data.getIdName())));
+                        .body("data.last_name", is(config.getIdName())));
     }
 
     @Tag("Error")
@@ -48,7 +45,7 @@ public class RestAPITest {
     void checkSingleUser404Error() {
         step("Выводит 404 ошибку", () ->
                 given()
-                        .spec(allureAndUri)
+                        .spec(allureAndUriWithJson)
                         .when()
                         .get("users/404")
                         .then()
@@ -61,13 +58,11 @@ public class RestAPITest {
     void createUserTest() {
 
         NewUserBody newUser = new NewUserBody();
-        newUser.setName(data.getNewUserName());
-        newUser.setJob(data.getNewUserJob());
+        newUser.setName(config.getNewUserName());
+        newUser.setJob(config.getNewUserJob());
 
-        AtomicReference<NewUserResponse> response = new AtomicReference<>();
-
-        step("Создание нового пользователя", () ->
-                response.set(given()
+        NewUserResponse response = step("Создание нового пользователя", () ->
+                given()
                         .spec(allureAndUriWithJson)
                         .body(newUser)
                         .when()
@@ -75,10 +70,10 @@ public class RestAPITest {
                         .then()
                         .spec(getLogs201)
                         .extract()
-                        .as(NewUserResponse.class)));
+                        .as(NewUserResponse.class));
 
         step("Проверка корректности созданного пользователя", () ->
-                assertThat(response.get().getName()).isEqualTo(data.getNewUserName()));
+                assertThat(response.getName()).isEqualTo(config.getNewUserName()));
     }
 
     @Tag("Delete")
@@ -87,7 +82,7 @@ public class RestAPITest {
     void deleteUserTest() {
         step("Удаление пользователя", () ->
                 given()
-                        .spec(allureAndUri)
+                        .spec(allureAndUriWithJson)
                         .when()
                         .delete("register")
                         .then()
@@ -99,13 +94,11 @@ public class RestAPITest {
     @Test
     void registryTest() {
         RegisterBody register = new RegisterBody();
-        register.setEmail(data.getRegEmail());
-        register.setPassword(data.getRegPassword());
+        register.setEmail(config.getRegEmail());
+        register.setPassword(config.getRegPassword());
 
-        AtomicReference<RegisterResponse> response = new AtomicReference<>();
-
-        step("Регестрация пользователя", () ->
-                response.set(given()
+        RegisterResponse response = step("Регестрация пользователя", () ->
+                given()
                         .spec(allureAndUriWithJson)
                         .body(register)
                         .when()
@@ -113,10 +106,10 @@ public class RestAPITest {
                         .then()
                         .spec(getLogs200)
                         .extract()
-                        .as(RegisterResponse.class)));
+                        .as(RegisterResponse.class));
 
         step("Проверка корректного вывода", () ->
-                assertThat(response.get().getToken()).isEqualTo(data.getRegToken()));
+                assertThat(response.getToken()).isEqualTo(config.getRegToken()));
     }
 
     @Tag("Pantone")
@@ -127,11 +120,11 @@ public class RestAPITest {
 
         step("Проверка существования пантон-цвета", () ->
                 given()
-                        .spec(allureAndUri)
+                        .spec(allureAndUriWithJson)
                         .when()
                         .get("/unknown")
                         .then()
                         .spec(getLogs200)
-                        .body(format(groovyRequest, data.getPantone().substring(0, 3)), hasItem(data.getPantone())));
+                        .body(format(groovyRequest, config.getPantone().substring(0, 3)), hasItem(config.getPantone())));
     }
 }
