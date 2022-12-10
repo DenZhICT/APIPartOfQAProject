@@ -91,7 +91,16 @@ task Pantone(type: Test) {
         includeTags 'Pantone'
     }
 }
-
+task Register(type: Test) {
+    useJUnitPlatform {
+        includeTags 'Register'
+    }
+}
+task Users(type: Test) {
+    useJUnitPlatform {
+        includeTags 'Users'
+    }
+}
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     //useJUnitPlatform()
