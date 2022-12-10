@@ -13,7 +13,8 @@ import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 import static org.hamcrest.Matchers.hasItem;
 
-@Tag("All") @Tag("Pantone")
+@Tag("All")
+@Tag("Pantone")
 @DisplayName("API тесты для Reqres")
 public class ReqresPantoneTests {
 

@@ -15,7 +15,8 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Tag("All") @Tag("Register")
+@Tag("All")
+@Tag("Register")
 @DisplayName("API тесты для Reqres")
 public class ReqresRegisterTests {
 
